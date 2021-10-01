@@ -6,9 +6,10 @@
 
 - System Demo - (Stage 2) - LIDAR Crowd Data Augmentation Demo   https://www.youtube.com/watch?v=ucfATfkJFZk 
 
-- Presentation Link 
+- Presentation Link - https://github.com/aktaksh/Lidar3DobjectDetection/blob/master/Presentation/Capstone%20Phase%201%20presentation_v3.pptx
 
-- Checkpoint of Dense Detection Model https://drive.google.com/drive/folders/1ayAreMIk_EU4jIGYCqFv5fUa30klFlZL?usp=sharing
+- Checkpoint of Dense Detection Model - https://drive.google.com/drive/folders/1ayAreMIk_EU4jIGYCqFv5fUa30klFlZL?usp=sharing
+
 
 # Sponsor Company Intro
 
@@ -23,7 +24,7 @@ Aim is to augment the dataset from KITTI[14] / Waymo Open Dataset[30] for Dense 
 
 This augmented dataset will be used for Capstone projects and future R&D projects in SenseTime. A good benchmark dataset is a cornerstone of model training. With a good benchmark dataset, researchers can significantly reduce the time spent on data collection and labelling required before training a model. For example, MNIST is one of the most popular deep learning datasets for handwritten digits recognition and has been widely used by data scientists to train and test new architectures or frameworks. 
 
-*Augmented Dataset Google DRive location* 
+## Augmented Dataset Google DRive location* 
 - https://drive.google.com/drive/folders/1-1zCORipbNB8GMjkjxuwxvJOFl0rlbcj?usp=sharing
 - Size: 32 GB
 
@@ -38,3 +39,35 @@ VFNet - https://openaccess.thecvf.com/content/CVPR2021/papers/Zhang_VarifocalNet
 KITTI - http://www.cvlibs.net/datasets/kitti/
 
 
+# Setup Steps
+
+## Dataset preparation
+
+Please download the official KITTI 3D object detection dataset (http://www.cvlibs.net/datasets/kitti/) and organize the downloaded files as follows:
+```
+PointRCNN
+├── data
+│   ├── KITTI
+│   │   ├── ImageSets
+│   │   ├── object
+│   │   │   ├──training
+│   │   │      ├──calib & velodyne & label_2 & image_2 & (optional: planes)
+│   │   │   ├──testing
+│   │   │      ├──calib & velodyne & image_2
+├── lib
+├── pointnet2_lib
+├── tools
+```
+
+Here the images are only used for visualization and the road planes are optional for data augmentation in the training.
+
+## Pretrained model
+
+You could download the pretrained model(Car) of PointRCNN from here(~15MB), which is trained on the train split (3712 samples) and evaluated on the val split (3769 samples) and test split (7518 samples). The performance on validation set is as follows:
+```
+Car AP@0.70, 0.70, 0.70:
+bbox AP:96.91, 89.53, 88.74
+bev  AP:90.21, 87.89, 85.51
+3d   AP:89.19, 78.85, 77.91
+aos  AP:96.90, 89.41, 88.54
+```
