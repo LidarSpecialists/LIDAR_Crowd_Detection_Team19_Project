@@ -69,13 +69,15 @@ use the following commend to generate drop pedestrian densely on to street and g
 python pedestrian_dispense_20200909.py 
 ```
 
-# Setup Steps
+# Stage2 Dense detection model
+## Environemnt Setup
+A yml file was upload here, and you could setup an conda environment using the yml file located at Lidar_3D_Crowd_Detection_Stage2/pointrcnn.yml
 
 ## Dataset preparation
 
-Please download the official KITTI 3D object detection dataset (http://www.cvlibs.net/datasets/kitti/) and organize the downloaded files as follows:
+Please use the stage 1 to generate augment data set or download our pre-generated augmented data on dense scenario(https://drive.google.com/drive/folders/1-1zCORipbNB8GMjkjxuwxvJOFl0rlbcj?usp=sharing), and orgnize in the following format:
 ```
-PointRCNN
+Lidar_3D_Crowd_Detection_Stage2
 ├── data
 │   ├── KITTI
 │   │   ├── ImageSets
@@ -93,25 +95,13 @@ Here the images are only used for visualization and the road planes are optional
 
 ## Pretrained model
 
-You could download the pretrained model(Car) of PointRCNN from here(~15MB), which is trained on the train split (3712 samples) and evaluated on the val split (3769 samples) and test split (7518 samples). The performance on validation set is as follows:
-```
-Car AP@0.70, 0.70, 0.70:
-bbox AP:96.91, 89.53, 88.74
-bev  AP:90.21, 87.89, 85.51
-3d   AP:89.19, 78.85, 77.91
-aos  AP:96.90, 89.41, 88.54
-```
+You could download the our pretrained dense detection model here (https://drive.google.com/drive/folders/1ayAreMIk_EU4jIGYCqFv5fUa30klFlZL?usp=sharing). This was trained on 8000 frame of augmented dataset, and show better performance under dense scenario compare to standard pointRCNN.
 
 
 ## Inference
 * To evaluate a single checkpoint, run the following command with `--ckpt` to specify the checkpoint to be evaluated:
 ```
-python eval_rcnn.py --cfg_file cfgs/default.yaml --ckpt ../output/rpn/ckpt/checkpoint_epoch_200.pth --batch_size 4 --eval_mode rcnn 
-```
-
-* To evaluate all the checkpoints of a specific training config file, add the `--eval_all` argument, and run the command as follows:
-```
-python eval_rcnn.py --cfg_file cfgs/default.yaml --eval_mode rcnn --eval_all
+python eval_rcnn.py --cfg_file cfgs/default.yaml --ckpt ../output/rpn/ckpt/checkpoint_epoch_5.pth --batch_size 2 --eval_mode rcnn 
 ```
 
 * To generate the results on the *test* split, please modify the `TEST.SPLIT=TEST` and add the `--test` argument. 
@@ -121,7 +111,7 @@ Here you could specify a bigger `--batch_size` for faster inference based on you
 ## Training
 Currently, the two stages of PointRCNN are trained separately. Firstly, to use the ground truth sampling data augmentation for training, we should generate the ground truth database as follows:
 ```
-python generate_gt_database.py --class_name 'Car' --split train
+python generate_gt_database.py --class_name 'Pedestrian' --split train
 ```
 
 ### Training of RPN stage
@@ -149,27 +139,4 @@ then there are two strategies to train the second stage of PointRCNN.
 ```
 python train_rcnn.py --cfg_file cfgs/default.yaml --batch_size 4 --train_mode rcnn --epochs 70  --ckpt_save_interval 2 --rpn_ckpt ../output/rpn/default/ckpt/checkpoint_epoch_200.pth
 ```
-(b) Train RCNN network with offline GT augmentation: 
-1. Generate the augmented offline scenes by running the following command:
-```
-python generate_aug_scene.py --class_name Car --split train --aug_times 4
-```
-2. Save the RPN features and proposals by adding `--save_rpn_feature`:
-
-* To save features and proposals for the training, we set `TEST.RPN_POST_NMS_TOP_N=300` and `TEST.RPN_NMS_THRESH=0.85` as follows:
-```
-python eval_rcnn.py --cfg_file cfgs/default.yaml --batch_size 4 --eval_mode rpn --ckpt ../output/rpn/default/ckpt/checkpoint_epoch_200.pth --save_rpn_feature --set TEST.SPLIT train_aug TEST.RPN_POST_NMS_TOP_N 300 TEST.RPN_NMS_THRESH 0.85
-```
-
-* To save features and proposals for the evaluation, we keep `TEST.RPN_POST_NMS_TOP_N=100` and `TEST.RPN_NMS_THRESH=0.8` as default:
-```
-python eval_rcnn.py --cfg_file cfgs/default.yaml --batch_size 4 --eval_mode rpn --ckpt ../output/rpn/default/ckpt/checkpoint_epoch_200.pth --save_rpn_feature
-```
-3. Now we could train our RCNN network. Note that you should modify `TRAIN.SPLIT=train_aug` to use the augmented scenes for the training, and use `--rcnn_training_roi_dir` and `--rcnn_training_feature_dir` to specify the saved features and proposals in the above step:
-```
-python train_rcnn.py --cfg_file cfgs/default.yaml --batch_size 4 --train_mode rcnn_offline --epochs 30  --ckpt_save_interval 1 --rcnn_training_roi_dir ../output/rpn/default/eval/epoch_200/train_aug/detections/data --rcnn_training_feature_dir ../output/rpn/default/eval/epoch_200/train_aug/features
-```
-For the offline GT sampling augmentation, the default setting to train the RCNN network is `RCNN.ROI_SAMPLE_JIT=True`, which means that we sample the RoIs and calculate their GTs in the GPU. I also provide the CPU version proposal sampling, which is implemented in the dataloader, and you could enable this feature by setting `RCNN.ROI_SAMPLE_JIT=False`. Typically the CPU version is faster but costs more CPU resources since they use mutiple workers.  
-
-**For mutiple GPUs** simply add the `--mgpus` argument as above. Also can increase the `--batch_size` by using multiple GPUs for training.
 
