@@ -8,6 +8,7 @@
 
 - Presentation Link 
 
+- Checkpoint of Dense Detection Model https://drive.google.com/drive/folders/1ayAreMIk_EU4jIGYCqFv5fUa30klFlZL?usp=sharing
 
 # Sponsor Company Intro
 
