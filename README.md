@@ -45,6 +45,29 @@ Point RCNN - https://github.com/sshaoshuai/PointRCNN
 ## KITTI
  *http://www.cvlibs.net/datasets/kitti*
 
+# Stage1 Data augmentation
+Please download the official KITTI 3D object detection dataset (http://www.cvlibs.net/datasets/kitti/) & semantic kitti dataset and organize the downloaded files as follows:
+```
+Capstone
+├── data
+│   ├── KITTI
+│   │   ├── object
+│   │   │   ├──training
+│   │   │      ├──calib & velodyne & label_2 & image_2 & (optional: planes)
+│   │   │   ├──testing
+│   │   │      ├──calib & velodyne & image_2
+│   │   ├── sequence
+│   │   │   ├──0
+│   │   │   ├──1
+
+use the following commend to generate the pedestrian database or use the generated database available in the link above. Directory and parameter could be set in the script
+```
+python kitti_crop_20210615.py
+```
+use the following commend to generate drop pedestrian densely on to street and generated augmented data. Range of number of pedestrian and crowdness could be set in the script and functions to specify the augmented data. The data will be auto generated into out_dir
+```
+python pedestrian_dispense_20200909.py 
+```
 
 # Setup Steps
 
