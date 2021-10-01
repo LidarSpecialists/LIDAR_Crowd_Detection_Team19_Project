@@ -96,7 +96,9 @@ Here the images are only used for visualization and the road planes are optional
 ## Pretrained model
 
 You could download the our pretrained dense detection model here (https://drive.google.com/drive/folders/1ayAreMIk_EU4jIGYCqFv5fUa30klFlZL?usp=sharing). This was trained on 8000 frame of augmented dataset, and show better performance under dense scenario compare to standard pointRCNN.
-
+```
+python eval_rcnn.py --cfg_file cfgs/default.yaml --rcnn_ckpt ../output/rcnn/default/ckpt/checkpoint_epoch_5.pth --rpn_ckpt ../output/rpn/default/ckpt/checkpoint_epoch_5.pth --batch_size 4 --eval_mode rcnn --test
+```
 
 ## Inference
 * To evaluate a single checkpoint, run the following command with `--ckpt` to specify the checkpoint to be evaluated:
