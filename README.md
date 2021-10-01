@@ -59,15 +59,15 @@ Capstone
 │   │   ├── sequence
 │   │   │   ├──0
 │   │   │   ├──1
-
+```
 use the following commend to generate the pedestrian database or use the generated database available in the link above. Directory and parameter could be set in the script
-```
+
 python kitti_crop_20210615.py
-```
+
 use the following commend to generate drop pedestrian densely on to street and generated augmented data. Range of number of pedestrian and crowdness could be set in the script and functions to specify the augmented data. The data will be auto generated into out_dir
-```
+
 python pedestrian_dispense_20200909.py 
-```
+
 
 # Setup Steps
 
