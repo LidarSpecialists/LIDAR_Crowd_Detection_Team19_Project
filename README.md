@@ -22,6 +22,10 @@ Aim is to augment the dataset from KITTI[14] / Waymo Open Dataset[30] for Dense 
 
 This augmented dataset will be used for Capstone projects and future R&D projects in SenseTime. A good benchmark dataset is a cornerstone of model training. With a good benchmark dataset, researchers can significantly reduce the time spent on data collection and labelling required before training a model. For example, MNIST is one of the most popular deep learning datasets for handwritten digits recognition and has been widely used by data scientists to train and test new architectures or frameworks. 
 
+*Augmented Dataset Google DRive location* 
+- https://drive.google.com/drive/folders/1-1zCORipbNB8GMjkjxuwxvJOFl0rlbcj?usp=sharing
+- Size: 32 GB
+
 # Standard Datasets
 We used KITTI & Smantic KITTI datasets but could not leverage Waymo Open dataset because it is entirely in a different format than the KITTI and hard to convert to KITTI format as well.
 
