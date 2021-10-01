@@ -1,14 +1,23 @@
 # Aim: To Augment 3D Benchmark Dataset and Train 3D Object Detection Model for Crowd Pedestrian detection for better accuracy
 
-- GIT Repository (this repo):  https://github.com/LidarSpecialists/LIDAR_Crowd_Detection_Team19_Project
+## GIT Repository (this repo):  
+ - https://github.com/LidarSpecialists/LIDAR_Crowd_Detection_Team19_Project
 
-- System Demo - (Stage 1) - LIDAR Crowd Pedestrian Detection Demo  https://www.youtube.com/watch?v=vpy4CWgZYRM 
+## System Demo - (Stage 1) - LIDAR Crowd Pedestrian Detection Demo  
+ - https://www.youtube.com/watch?v=vpy4CWgZYRM
 
-- System Demo - (Stage 2) - LIDAR Crowd Data Augmentation Demo   https://www.youtube.com/watch?v=ucfATfkJFZk 
+## System Demo - (Stage 2) - LIDAR Crowd Data Augmentation Demo   
+ - https://www.youtube.com/watch?v=ucfATfkJFZk
 
-- Presentation Link - https://github.com/aktaksh/Lidar3DobjectDetection/blob/master/Presentation/Capstone%20Phase%201%20presentation_v3.pptx
+## Presentation Link 
+- https://github.com/LidarSpecialists/LIDAR_Crowd_Detection_Team19_Project/blob/main/reports/Lidar_Crowd_Detection_Team19_ProjectReport_Phase2_v0(1).docx
 
-- Checkpoint of Dense Detection Model - https://drive.google.com/drive/folders/1ayAreMIk_EU4jIGYCqFv5fUa30klFlZL?usp=sharing
+## Checkpoint of Dense Detection Model
+- https://drive.google.com/drive/folders/1ayAreMIk_EU4jIGYCqFv5fUa30klFlZL?usp=sharing
+
+## Augmented Dataset Google DRive location* 
+- https://drive.google.com/drive/folders/1-1zCORipbNB8GMjkjxuwxvJOFl0rlbcj?usp=sharing
+- Size: 32 GB
 
 
 # Sponsor Company Intro
@@ -24,10 +33,6 @@ Aim is to augment the dataset from KITTI[14] / Waymo Open Dataset[30] for Dense 
 
 This augmented dataset will be used for Capstone projects and future R&D projects in SenseTime. A good benchmark dataset is a cornerstone of model training. With a good benchmark dataset, researchers can significantly reduce the time spent on data collection and labelling required before training a model. For example, MNIST is one of the most popular deep learning datasets for handwritten digits recognition and has been widely used by data scientists to train and test new architectures or frameworks. 
 
-## Augmented Dataset Google DRive location* 
-- https://drive.google.com/drive/folders/1-1zCORipbNB8GMjkjxuwxvJOFl0rlbcj?usp=sharing
-- Size: 32 GB
-
 # Standard Datasets
 We used KITTI & Smantic KITTI datasets but could not leverage Waymo Open dataset because it is entirely in a different format than the KITTI and hard to convert to KITTI format as well.
 
@@ -35,8 +40,10 @@ We used KITTI & Smantic KITTI datasets but could not leverage Waymo Open dataset
 Point RCNN - https://github.com/sshaoshuai/PointRCNN
 
 # Other Important References 
-VFNet - https://openaccess.thecvf.com/content/CVPR2021/papers/Zhang_VarifocalNet_An_IoU-Aware_Dense_Object_Detector_CVPR_2021_paper.pdf
-KITTI - http://www.cvlibs.net/datasets/kitti/
+## VFNet
+ *https://openaccess.thecvf.com/content/CVPR2021/papers/Zhang_VarifocalNet_An_IoU-Aware_Dense_Object_Detector_CVPR_2021_paper.pdf*
+## KITTI
+ *http://www.cvlibs.net/datasets/kitti*
 
 
 # Setup Steps
