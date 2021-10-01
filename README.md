@@ -39,9 +39,10 @@ We used KITTI & Smantic KITTI datasets but could not leverage Waymo Open dataset
 # 3D Detection Baseline Model
 Point RCNN - https://github.com/sshaoshuai/PointRCNN
 
-# Other Important References 
-## VFNet
- *https://openaccess.thecvf.com/content/CVPR2021/papers/Zhang_VarifocalNet_An_IoU-Aware_Dense_Object_Detector_CVPR_2021_paper.pdf*
+# Other References 
+- VFNet - https://openaccess.thecvf.com/content/CVPR2021/papers/Zhang_VarifocalNet_An_IoU-Aware_Dense_Object_Detector_CVPR_2021_paper.pdf
+- RangeDet - https://www.researchgate.net/publication/350160290_RangeDetIn_Defense_of_Range_View_for_LiDAR-based_3D_Object_Detection
+
 ## KITTI
  *http://www.cvlibs.net/datasets/kitti*
 
