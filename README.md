@@ -8,7 +8,6 @@
 
 - Presentation Link 
 
-- Checkpoint of Dense Detection Model https://drive.google.com/drive/folders/1ayAreMIk_EU4jIGYCqFv5fUa30klFlZL?usp=sharing
 
 # Sponsor Company Intro
 
@@ -38,3 +37,35 @@ VFNet - https://openaccess.thecvf.com/content/CVPR2021/papers/Zhang_VarifocalNet
 KITTI - http://www.cvlibs.net/datasets/kitti/
 
 
+# Setup Steps
+
+## Dataset preparation
+
+Please download the official KITTI 3D object detection dataset (http://www.cvlibs.net/datasets/kitti/) and organize the downloaded files as follows:
+```
+PointRCNN
+├── data
+│   ├── KITTI
+│   │   ├── ImageSets
+│   │   ├── object
+│   │   │   ├──training
+│   │   │      ├──calib & velodyne & label_2 & image_2 & (optional: planes)
+│   │   │   ├──testing
+│   │   │      ├──calib & velodyne & image_2
+├── lib
+├── pointnet2_lib
+├── tools
+```
+
+Here the images are only used for visualization and the road planes are optional for data augmentation in the training.
+
+## Pretrained model
+
+You could download the pretrained model(Car) of PointRCNN from here(~15MB), which is trained on the train split (3712 samples) and evaluated on the val split (3769 samples) and test split (7518 samples). The performance on validation set is as follows:
+```
+Car AP@0.70, 0.70, 0.70:
+bbox AP:96.91, 89.53, 88.74
+bev  AP:90.21, 87.89, 85.51
+3d   AP:89.19, 78.85, 77.91
+aos  AP:96.90, 89.41, 88.54
+```
